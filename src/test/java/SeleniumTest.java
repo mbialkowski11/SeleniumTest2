@@ -1,3 +1,4 @@
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -10,7 +11,9 @@ public class SeleniumTest {
 
     @Test
     public void openGooglePage() {
-        WebDriver driver = getDriver("chrome");
+        WebDriverManager.chromedriver().setup();
+        WebDriver driver = new ChromeDriver();
+       //WebDriver driver = getDriver("chrome");
         driver.manage().window().maximize();
         driver.get("https://www.google.com");
 
@@ -27,7 +30,8 @@ public class SeleniumTest {
         searchField.sendKeys("Selenium");
         //zasymuluj nacisniecie przycisku enter
         //searchField.sendKeys(Keys.ENTER);
-        WebElement searchButton = driver.findElement(By.name("btnK"));
+        WebElement searchButton = driver.findElement(By.cssSelector("body > div.L3eUgb > div.o3j99.ikrT4e.om7nvf > form > div:nth-child(1) > div.A8SBwf > div.FPdoLc.lJ9FBc > center > input.gNO89b"));
+       // WebElement searchButton = driver.findElement(By.cssSelector("[name='btnK']"));
         searchButton.click();
         // znalezc rezultat
         WebElement result = driver.findElement(By.xpath("//a[contains(@href,'selenium.dev')]//h3"));
@@ -40,8 +44,8 @@ public class SeleniumTest {
     public WebDriver getDriver (String browser) {
         switch (browser) {
             case "chrome":
-               // String chromePath = "C:\\Users\\micha\\Downloads\\chromedriver_win32\\chromedriver.exe";
-                //System.setProperty("webdriver.chrome.driver", chromePath);
+                String chromePath = "C:\\Users\\micha\\Downloads\\chromedriver_win32\\chromedriver.exe";
+                System.setProperty("webdriver.chrome.driver", chromePath);
                 return  new ChromeDriver();
             case "firefox":
                 return new FirefoxDriver();
