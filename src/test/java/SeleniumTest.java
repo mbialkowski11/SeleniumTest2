@@ -32,6 +32,9 @@ public class SeleniumTest {
         //searchField.sendKeys(Keys.ENTER);
         WebElement searchButton = driver.findElement(By.cssSelector("body > div.L3eUgb > div.o3j99.ikrT4e.om7nvf > form > div:nth-child(1) > div.A8SBwf > div.FPdoLc.lJ9FBc > center > input.gNO89b"));
        // WebElement searchButton = driver.findElement(By.cssSelector("[name='btnK']"));
+        //WebElement searchButton = driver.findElement(By.xpath("//input[@name='btnK']"));
+
+
         searchButton.click();
         // znalezc rezultat
         WebElement result = driver.findElement(By.xpath("//a[contains(@href,'selenium.dev')]//h3"));
